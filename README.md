@@ -87,7 +87,7 @@ Future iterations of PokeDex will include:
 - **Tools**: GitHub or GitLab
 
 ## Team Members
-- Shreya Prashant Deshmukh (BCA22228)
+- Shreya Deshmukh (BCA22228)
 - Ashish Mali (BCA22252)
 - Santosh Jha (BCA222275)
 - Sakshi Sharma (BCA22253)
