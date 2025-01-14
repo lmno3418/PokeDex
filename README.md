@@ -89,5 +89,5 @@ Future iterations of PokeDex will include:
 ## Team Members
 - Shreya Deshmukh (BCA22228)
 - Ashish Mali (BCA22252)
-- Santosh Jha (BCA222275)
+- Santosh Jha (BCA22275)
 - Sakshi Sharma (BCA22253)
