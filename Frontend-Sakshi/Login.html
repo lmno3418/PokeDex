@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Register</title>
+    <style>
+        body {
+            background-image: url("https://images8.alphacoders.com/124/thumb-1920-1243956.jpg");
+            background-size: cover; /* Ensures the image covers the entire background */
+        background-position: center; /* Centers the image */
+        background-repeat: no-repeat; /* Prevents the image from repeating */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: white;
+            opacity:0.5;
+            box-shadow: 0 4px 6px rgba(, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .form-toggle {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-toggle button {
+            background-color: #28a745;
+        }
+
+        .form-toggle button:hover {
+            background-color: #218838;
+        }
+
+.error-message {
+    color: #ff0000; /* Red color for errors */
+    font-size: 14px;
+    margin-top: -10px; /* Adjust spacing */
+    margin-bottom: 10px;
+}
+.form-section {
+    background-color: rgba(255, 255, 255, 0.8); /* Light translucent white */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    padding: 20px; /* Spacing inside the form */
+    max-width: 400px; /* Limit width of the form */
+    margin: auto; /* Center the form */
+    text-align: center; /* Center text */
+}
+
+    </style>
+</head>
+<body>
+    <div id="loginForm" class="form-section">
+    <h2>Login</h2>
+    <form action="/login" method="post">
+        <label for="loginUserid">User ID:</label>
+        <input type="text" id="loginUserid" name="username" required>
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="password" required>
+
+        <!-- Display error message inside the form -->
+        {% if login_error %}
+            <p class="error-message">{{ login_error }}</p>
+        {% endif %}
+
+        <button type="submit">Login</button>
+    </form>
+    <div class="form-toggle">
+        <button onclick="toggleForm('register')">Don't have an account? Register here</button>
+    </div>
+</div>
+
+        <!-- Registration Form -->
+        <div id="registerForm" class="form-section" style="display:none;">
+            <h2>Register</h2>
+<!--            <form id="registerFormElement">-->
+                <form action="/register" method="post">
+                <label for="registerName">Full Name:</label>
+                <input type="text" id="registerName" name="name" required>
+
+                <label for="registerEmail">Email:</label>
+                <input type="email" id="registerEmail" name="email" required>
+
+                <label for="registerUserid">User ID:</label>
+                <input type="text" id="registerUserid" name="userid" required>
+
+                <label for="registerPassword">Password:</label>
+                <input type="password" id="registerPassword" name="password" required>
+
+                <label for="registerConfirmPassword">Confirm Password:</label>
+                <input type="password" id="registerConfirmPassword" name="confirmPassword" required>
+
+                <button type="submit">Register</button>
+            </form>
+            <div class="form-toggle">
+                <button onclick="toggleForm('login')">Already have an account? Login here</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleForm(formType) {
+            const loginForm = document.getElementById("loginForm");
+            const registerForm = document.getElementById("registerForm");
+            if (formType === "register") {
+                loginForm.style.display = "none";
+                registerForm.style.display = "block";
+            } else {
+                loginForm.style.display = "block";
+                registerForm.style.display = "none";
+            }
+        }
+
+        document.getElementById("loginFormElement").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form from submitting
+
+            const userid = document.getElementById("loginUserid").value;
+            const password = document.getElementById("loginPassword").value;
+
+            // Basic hardcoded validation (replace with server-side validation)
+            if(userid === "testUser" && password === "password123") {
+                alert("Login successful!");
+                // Redirect to a dashboard or another page
+                window.location.href = "dashboard.html";
+            } else {
+                alert("Invalid credentials, please try again.");
+            }
+        });
+
+        document.getElementById("registerFormElement").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form from submitting
+
+            const name = document.getElementById("registerName").value;
+            const email = document.getElementById("registerEmail").value;
+            const userid = document.getElementById("registerUserid").value;
+            const password = document.getElementById("registerPassword").value;
+            const confirmPassword = document.getElementById("registerConfirmPassword").value;
+
+            // Basic validation (check if passwords match)
+            if (password !== confirmPassword) {
+                alert("Passwords do not match. Please try again.");
+                return;
+            }
+
+            // Simulate successful registration (replace with actual backend call)
+            alert("Registration successful! You can now log in.");
+            toggleForm('login'); // Switch back to login form
+        });
+    </script>
+</body>
+</html>
