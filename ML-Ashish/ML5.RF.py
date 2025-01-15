@@ -2,10 +2,12 @@
 import numpy as np
 import pandas as pd
 import sklearn
+import joblib 
 
 print("numpy",np.__version__)
 print("pandas",pd.__version__)
 print("sklearn",sklearn.__version__)
+print("joblib",joblib.__version__)
 
 # Load the datasets
 # pokemon_df contains information about each Pokemon
