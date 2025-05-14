@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="app">
+        <h1><i class="fas fa-info-circle"></i> About Pokedex</h1>
+        
+        <div class="pokemon-header about-header">
+            <h1 class="display-4">About Pokedex App</h1>
+            <p class="lead">A comprehensive Pokedex application with user authentication and detailed Pokemon information.</p>
+        </div>
+        
+        <div class="pokemon-card about-container">
+            <h3 class="mb-4" style="color: var(--primary-color);"><i class="fas fa-star"></i> Key Features</h3>
+            <ul class="list-group list-group-flush feature-list mb-4">
+                <li class="list-group-item"><i class="fas fa-lock"></i> User authentication with secure login and registration</li>
+                <li class="list-group-item"><i class="fas fa-database"></i> Comprehensive Pokedex with data for hundreds of Pokemon</li>
+                <li class="list-group-item"><i class="fas fa-filter"></i> Advanced filtering options for Pokemon searching</li>
+                <li class="list-group-item"><i class="fas fa-chart-bar"></i> Detailed Pokemon statistics and information</li>
+                <li class="list-group-item"><i class="fas fa-mobile-alt"></i> Modern and responsive UI design</li>
+            </ul>
+            
+            <h3 class="mb-3" style="color: var(--primary-color);"><i class="fas fa-code"></i> Technology Stack</h3>
+            <p>The application is built using modern web technologies to provide a seamless user experience:</p>
+            
+            <div class="tech-used">
+                <span class="tech-badge"><i class="fab fa-python me-2"></i>Python Flask</span>
+                <span class="tech-badge"><i class="fab fa-bootstrap me-2"></i>Bootstrap</span>
+                <span class="tech-badge"><i class="fab fa-css3 me-2"></i>Custom CSS</span>
+                <span class="tech-badge"><i class="fab fa-js me-2"></i>JavaScript</span>
+                <span class="tech-badge"><i class="fas fa-database me-2"></i>Supabase</span>
+                <span class="tech-badge"><i class="fas fa-layer-group me-2"></i>RESTful API</span>
+            </div>
+            
+            <div class="section-divider"></div>
+            
+            <!-- Project Links Section -->
+            <div class="project-section">
+                <h3><i class="fas fa-link"></i> Project Links</h3>
+                <ul class="list-group list-group-flush feature-list mb-4">
+                    <li class="list-group-item">
+                        <i class="fab fa-kaggle"></i> 
+                        <strong>Kaggle Notebook:</strong> 
+                        <a href="https://www.kaggle.com/code/lmno3418/random-forest-with-75-accuracy" target="_blank" class="project-link">Random Forest with 75% Accuracy</a>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-database"></i> 
+                        <strong>Kaggle Dataset:</strong> 
+                        <a href="https://www.kaggle.com/datasets/lmno3418/pokedex-pokemon-data/data" target="_blank" class="project-link">Merged Pokédex Pokémon Data</a>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fab fa-medium"></i> 
+                        <strong>Medium Blog:</strong> 
+                        <a href="https://medium.com/@lmno3418/why-are-trees-so-cool-the-magic-of-tree-based-models-3222e9439099" target="_blank" class="project-link">Why Are Trees So Cool? The Magic of Tree-Based Models</a>
+                    </li>
+                </ul>
+                
+                <div class="quote-container">
+                    <p><em>I posted this after experimenting with various models and discovering the power of tree ensembles.</em></p>
+                </div>
+            </div>
+            
+            <div class="section-divider"></div>
+            
+            <!-- Dataset Information Section -->
+            <div class="project-section">
+                <h3><i class="fas fa-database"></i> About the Dataset</h3>
+                
+                <h4>Overview</h4>
+                <p>This repository merges two complementary Pokémon data sources into a single, unified dataset (available in CSV and JSON). It's tailored for building an end-to-end supervised ML model that predicts Pokémon battle outcomes. By keeping only Pokémon common to both sources, the merged dataset offers consistent IDs, names, stats, and battle records—laying the groundwork for accurate, reproducible model training and a polished Pokédex UI.</p>
+                
+                <h4>1. Data Sources</h4>
+                
+                <h5>1.1 Kaggle "Pokémon Challenge"</h5>
+                <ul>
+                    <li><strong>URL:</strong> <a href="https://www.kaggle.com/datasets/terminus7/pokemon-challenge" target="_blank" class="project-link">https://www.kaggle.com/datasets/terminus7/pokemon-challenge</a></li>
+                    <li><strong>Contents:</strong>
+                        <ul>
+                            <li><code>pokemon.csv</code> – Base characteristics for each Pokémon (ID, name, stats, types, generation, legendary flag)</li>
+                            <li><code>combats.csv</code> – Simulated combat records (attacker ID, defender ID, winner ID)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Original Scope:</strong> ~800 unique Pokémon; battle data generated by a custom algorithm to simplify in-game mechanics</li>
+                </ul>
+                
+                <h5>1.2 Anand Baraik's Pokédex JSON</h5>
+                <ul>
+                    <li><strong>URL:</strong> <a href="https://github.com/anandbaraik/pokedex" target="_blank" class="project-link">https://github.com/anandbaraik/pokedex</a></li>
+                    <li><strong>Contents:</strong>
+                        <ul>
+                            <li><code>pokeData.ts</code> – Detailed entries per Pokémon, including name, type(s), base stats, and sprite URLs.</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h4>2. Merge & Reduction</h4>
+                <ul>
+                    <li><strong>Inner Join:</strong> We performed an inner join on Pokémon ID and name, retaining only those present in both sources.</li>
+                    <li><strong>Resulting Counts:</strong>
+                        <ul>
+                            <li><strong>Pokémon:</strong> XX entries (reduced from ~800)</li>
+                            <li><strong>Combat Records:</strong> YY encounters (filtered to battles where both participants are in the merged roster)</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h4>3. File Formats</h4>
+                
+                <h5>3.1 CSV (<code>final_pokemon.csv</code> & <code>final_combats.csv</code>)</h5>
+                
+                <h6><code>final_pokemon.csv</code> (one row per Pokémon)</h6>
+                <div class="table-container">
+                    <table class="about-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Non-Null Count</th>
+                                <th>Dtype</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>#</code></td><td>697</td><td>int64</td></tr>
+                            <tr><td><code>Name</code></td><td>697</td><td>object</td></tr>
+                            <tr><td><code>Type 1</code></td><td>697</td><td>object</td></tr>
+                            <tr><td><code>Type 2</code></td><td>697</td><td>object</td></tr>
+                            <tr><td><code>HP</code></td><td>697</td><td>int64</td></tr>
+                            <tr><td><code>Attack</code></td><td>697</td><td>int64</td></tr>
+                            <tr><td><code>Defense</code></td><td>697</td><td>int64</td></tr>
+                            <tr><td><code>Sp. Atk</code></td><td>697</td><td>int64</td></tr>
+                            <tr><td><code>Sp. Def</code></td><td>697</td><td>int64</td></tr>
+                            <tr><td><code>Speed</code></td><td>697</td><td>int64</td></tr>
+                            <tr><td><code>Generation</code></td><td>697</td><td>int64</td></tr>
+                            <tr><td><code>Legendary</code></td><td>697</td><td>bool</td></tr>
+                            <tr><td><code>height</code></td><td>697</td><td>int64</td></tr>
+                            <tr><td><code>weight</code></td><td>697</td><td>int64</td></tr>
+                            <tr><td><code>base_experience</code></td><td>697</td><td>int64</td></tr>
+                            <tr><td><code>sprites</code></td><td>697</td><td>object</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h6><code>final_combats.csv</code> (one row per encounter)</h6>
+                <div class="table-container">
+                    <table class="about-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Non-Null Count</th>
+                                <th>Dtype</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>First_pokemon</code></td><td>38,054</td><td>int64</td></tr>
+                            <tr><td><code>Second_pokemon</code></td><td>38,054</td><td>int64</td></tr>
+                            <tr><td><code>Winner</code></td><td>38,054</td><td>int64</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h5>3.2 JSON (<code>PokemonData2.json</code> & <code>PokemonCombats2.json</code>)</h5>
+                
+                <h6><code>PokemonData2.json</code></h6>
+                <pre style="background: #f8f9fa; padding: 15px; border-radius: 8px; overflow: auto;">
+[
+  {
+    "#": 1,
+    "Name": "Bulbasaur",
+    "Type 1": "Grass",
+    "Type 2": "Poison",
+    "HP": 45,
+    "Attack": 49,
+    "Defense": 49,
+    "Sp. Atk": 65,
+    "Sp. Def": 65,
+    "Speed": 45,
+    "Generation": 1,
+    "Legendary": false,
+    "height": 7,
+    "weight": 69,
+    "base_experience": 64,
+    "sprites": {
+      "normal": "http://img.pokemondb.net/sprites/black-white/normal/bulbasaur.png",
+      "animated": "http://img.pokemondb.net/sprites/black-white/anim/normal/bulbasaur.gif"
+    }
+  },
+  …  
+]</pre>
+
+                <h6><code>PokemonCombats2.json</code></h6>
+                <pre style="background: #f8f9fa; padding: 15px; border-radius: 8px; overflow: auto;">
+[
+  {
+    "First_pokemon": 266,
+    "Second_pokemon": 298,
+    "Winner": 298
+  },
+  …
+]</pre>
+                
+                <h4>4. Notes & Considerations</h4>
+                <ul>
+                    <li><strong>Dropped Entries:</strong> Rare or region-exclusive Pokémon appearing in only one source were excluded.</li>
+                    <li><strong>Stat Consistency:</strong> Verified that base stats match between sources for each common Pokémon.</li>
+                    <li><strong>Battle Simplification:</strong> As with the original Kaggle data, these battles omit in-game mechanics (abilities, items, weather, etc.).</li>
+                </ul>
+                
+                <h4>5. Current Usage & Future Plans</h4>
+                
+                <h5>Existing Demos</h5>
+                <ul>
+                    <li><strong>Pokédex UI:</strong> <a href="https://poke-dex-flask-vercel.vercel.app/" target="_blank" class="project-link">https://poke-dex-flask-vercel.vercel.app/</a></li>
+                    <li><strong>Early ML Model ("Weedle's Cave"):</strong> <a href="https://github.com/lmno3418/pokedex_render" target="_blank" class="project-link">https://github.com/lmno3418/pokedex_render</a>
+                        <ul>
+                            <li>Trained on a small subset of battles as proof-of-concept.</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h5>Next Steps</h5>
+                <ol>
+                    <li><strong>Full-Dataset Training:</strong> Train models on the complete merged dataset for robust predictions.</li>
+                    <li><strong>Feature Engineering:</strong> Add features such as type-effectiveness matrices and move pools.</li>
+                    <li><strong>UI Enhancements:</strong> Develop a polished front end for interactive battle simulations.</li>
+                    <li><strong>Community Feedback:</strong> Gather and incorporate suggestions, monitor performance metrics, and iteratively improve accuracy.</li>
+                </ol>
+                
+                <h4>Provenance & Collection Methodology</h4>
+                
+                <h5>Sources</h5>
+                <ol>
+                    <li>
+                        <strong>Kaggle Pokémon Challenge</strong>
+                        <div class="quote-container">
+                            <p>"Welcome to Weedle's Cave. The Pokémon characteristics come from the actual game but the battle data has been generated by a custom algorithm that doesn't take into account some game characteristics to simplify the dataset."</p>
+                        </div>
+                        <ul>
+                            <li>URL: <a href="https://www.kaggle.com/datasets/terminus7/pokemon-challenge" target="_blank" class="project-link">https://www.kaggle.com/datasets/terminus7/pokemon-challenge</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Anand Baraik's Pokédex</strong>
+                        <ul>
+                            <li>URL: <a href="https://github.com/anandbaraik/pokedex" target="_blank" class="project-link">https://github.com/anandbaraik/pokedex</a></li>
+                            <li>Original data in TypeScript; converted to CSV/JSON for this project.</li>
+                        </ul>
+                    </li>
+                </ol>
+                
+                <h5>Methodology</h5>
+                <ul>
+                    <li>Data collected from Kaggle and GitHub.</li>
+                    <li>TypeScript files were parsed and transformed into CSV/JSON.</li>
+                    <li>Datasets were merged via inner joins on Pokémon ID and name.</li>
+                </ul>
+                
+                <h4>Citations</h4>
+                <div class="quote-container">
+                    <p>This dataset currently has no formal academic citations. If you use it in your work, please cite:</p>
+                    <p>lmno3418, <em>Merged Pokédex Pokémon Data</em>, Kaggle Dataset, 2025.</p>
+                    <p>lmno3418, <em>Random Forest with 75% Accuracy</em>, Kaggle Notebook, 2025.</p>
+                    <p>lmno3418, <em>Why Are Trees So Cool? The Magic of Tree-Based Models</em>, Medium, April 2025.</p>
+                </div>
+            </div>
+            
+            <div class="mt-4">
+                <p>This project demonstrates how to build a modern web application with authentication, data filtering, and interactive UI components while providing valuable information about Pokemon to users.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %} 
